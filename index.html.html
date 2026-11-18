@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إسماعيل عدرا | مهندس ذكاء اصطناعي ومعالجة لغات طبيعية</title>
+  <!-- Google Fonts: Cairo, Plus Jakarta Sans, Inter & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'Inter', 'sans-serif'],
+            en: ['Plus Jakarta Sans', 'Inter', 'Cairo', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            emerald: {
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+            },
+            cyan: {
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+            },
+            slateDark: {
+              800: '#1e293b',
+              900: '#0f172a',
+              950: '#070b14',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Cairo', 'Inter', sans-serif;
+    }
+    html[lang="en"] body {
+      font-family: 'Inter', 'Plus Jakarta Sans', 'Cairo', sans-serif;
+    }
+    html[lang="en"] h1,
+    html[lang="en"] h2,
+    html[lang="en"] h3 {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070b14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #10b981, #06b6d4);
+      border-radius: 6px;
+    }
+    /* Subtle Dot Matrix Background */
+    .bg-dot-pattern {
+      background-image: radial-gradient(rgba(16, 185, 129, 0.14) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    /* Card Hover Animations */
+    .glass-card {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.22);
+    }
+    /* Typewriter Cursor */
+    .type-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.15em;
+      background-color: #10b981;
+      vertical-align: middle;
+      margin-inline-start: 4px;
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slateDark-950 dark:text-slate-100 bg-dot-pattern transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+
+  <!-- Header / Sticky Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/85 dark:bg-slateDark-950/85 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo & Name -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-400 text-white flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-brain text-lg"></i>
+        </div>
+        <div class="flex flex-col">
+          <span data-i18n="brandName" class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            إسماعيل عدرا
+          </span>
+          <span class="text-xs font-mono text-emerald-600 dark:text-cyan-400">
+            AI &amp; NLP Engineer
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-slate-600 dark:text-slate-300">
+        <a href="#hero" data-i18n="navHome" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">الرئيسية</a>
+        <a href="#about" data-i18n="navAbout" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">عنّي</a>
+        <a href="#skills" data-i18n="navSkills" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">المهارات</a>
+        <a href="#projects" data-i18n="navProjects" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">المشاريع</a>
+        <a href="#contact" data-i18n="navContact" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">تواصل معي</a>
+      </nav>
+
+      <!-- Language Switcher, Dark/Light Mode Toggle & Mobile Menu Button -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Language Toggle Button -->
+        <button id="langBtn" type="button" aria-label="تبديل اللغة / Switch Language" class="h-10 px-3.5 rounded-xl bg-slate-100 dark:bg-slateDark-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-cyan-400 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all flex items-center gap-1.5 text-xs sm:text-sm font-bold shadow-sm">
+          <i class="fa-solid fa-globe text-emerald-500"></i>
+          <span id="langBtnText">EN</span>
+        </button>
+
+        <!-- Theme Toggle Button -->
+        <button id="themeBtn" type="button" aria-label="تبديل الوضع الليلي والنهاري" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slateDark-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-emerald-400 hover:border-emerald-500 transition-all flex items-center justify-center">
+          <i id="themeIcon" class="fa-solid fa-sun text-base"></i>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" type="button" aria-label="فتح القائمة" class="md:hidden w-10 h-10 rounded-xl bg-slate-100 dark:bg-slateDark-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 flex items-center justify-center">
+          <i class="fa-solid fa-bars text-base"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-slateDark-900 border-b border-slate-200 dark:border-slate-800 px-6 py-5">
+      <div class="flex flex-col gap-4 text-sm font-bold text-slate-700 dark:text-slate-200">
+        <a href="#hero" data-i18n="navHome" class="mobile-nav-link py-1 hover:text-emerald-500">الرئيسية</a>
+        <a href="#about" data-i18n="navAbout" class="mobile-nav-link py-1 hover:text-emerald-500">عنّي</a>
+        <a href="#skills" data-i18n="navSkills" class="mobile-nav-link py-1 hover:text-emerald-500">المهارات</a>
+        <a href="#projects" data-i18n="navProjects" class="mobile-nav-link py-1 hover:text-emerald-500">المشاريع</a>
+        <a href="#contact" data-i18n="navContact" class="mobile-nav-link py-1 hover:text-emerald-500">تواصل معي</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24 sm:pt-28 overflow-hidden">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative py-12 lg:py-20">
+      <!-- Ambient Emerald & Cyan Glows -->
+      <div class="absolute -top-24 right-10 w-96 h-96 bg-emerald-500/15 dark:bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 left-10 w-96 h-96 bg-cyan-500/15 dark:bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Personal Introduction Column -->
+          <div id="heroIntroCol" class="lg:col-span-6 space-y-6 text-start">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-bold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span data-i18n="heroBadge">مهندس ذكاء اصطناعي ومعالجة لغات طبيعية</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+              <span data-i18n="heroGreeting">مرحباً، أنا</span> <span id="heroNameGradient" data-i18n="heroName" class="bg-gradient-to-l from-emerald-500 via-teal-400 to-cyan-400 bg-clip-text text-transparent">إسماعيل عدرا</span>
+            </h1>
+
+            <!-- Typewriter Line -->
+            <div class="text-lg sm:text-2xl font-bold text-slate-700 dark:text-slate-200 min-h-[2.25rem] flex items-center">
+              <span class="text-emerald-600 dark:text-emerald-400 me-2">&gt;</span>
+              <span id="typewriterText"></span>
+              <span class="type-cursor"></span>
+            </div>
+
+            <p id="heroDesc" class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed">
+              متخصص في بناء وتدريب نماذج الذكاء الاصطناعي ومعالجة اللغات الطبيعية (<span class="font-mono text-slate-900 dark:text-slate-200">NLP &amp; LLMs</span>). أعمل على تطوير الأنظمة الذكية القادرة على فهم وتحليل وتوليد النصوص العربية بدقة عالية، وتصميم معماريات الاسترجاع المعزز (<span class="font-mono text-slate-900 dark:text-slate-200">RAG</span>) وحلول التعلم العميق.
+            </p>
+
+            <!-- Hero Action Buttons -->
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="#projects" id="heroProjectsBtn" class="px-7 py-3.5 rounded-2xl bg-gradient-to-l from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all flex items-center gap-2.5">
+                <i class="fa-solid fa-layer-group"></i>
+                <span data-i18n="btnExploreProjects">استعراض المشاريع</span>
+              </a>
+              <a href="https://wa.me/963969690052" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500 hover:text-white border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold text-sm transition-all flex items-center gap-2.5">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span data-i18n="btnWhatsapp">تواصل عبر واتساب</span>
+              </a>
+            </div>
+
+            <!-- Social & Direct Links Bar -->
+            <div class="flex flex-wrap items-center gap-4 pt-4 border-t border-slate-200 dark:border-slate-800/80 text-xs sm:text-sm">
+              <a href="https://wa.me/963969690052" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors font-mono">
+                <i class="fa-brands fa-whatsapp text-emerald-500 text-base"></i>
+                <span dir="ltr">+963 969 690 052</span>
+              </a>
+              <span class="text-slate-300 dark:text-slate-700">|</span>
+              <a href="mailto:asmaeeladra74@gmail.com" class="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors font-mono">
+                <i class="fa-solid fa-envelope text-cyan-500 text-sm"></i>
+                <span>asmaeeladra74@gmail.com</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Interactive Python AIEngineer Class Code Card -->
+          <div class="lg:col-span-6">
+            <div class="rounded-3xl bg-slateDark-900 border border-slate-700/70 shadow-2xl shadow-emerald-900/20 overflow-hidden">
+              <!-- Window Header -->
+              <div class="px-5 py-3.5 bg-slateDark-950 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                </div>
+                <div class="text-xs font-mono text-slate-400 flex items-center gap-2">
+                  <i class="fa-brands fa-python text-emerald-400"></i>
+                  <span>ai_engineer.py</span>
+                </div>
+                <button id="runCodeSimulationBtn" type="button" class="px-3 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/30 text-xs font-mono transition-all flex items-center gap-1.5">
+                  <i class="fa-solid fa-play text-[10px]"></i>
+                  <span data-i18n="runCodeBtn">تشغيل الكود</span>
+                </button>
+              </div>
+
+              <!-- Code Content (LTR for accurate Python syntax) -->
+              <div dir="ltr" class="p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto text-slate-200 text-left">
+<pre><code><span class="text-cyan-400">import</span> torch
+<span class="text-cyan-400">from</span> transformers <span class="text-cyan-400">import</span> AutoTokenizer, AutoModel
+
+<span class="text-cyan-400">class</span> <span class="text-emerald-400 font-bold">AIEngineer</span>:
+    <span class="text-cyan-400">def</span> <span class="text-sky-400">__init__</span>(<span class="text-amber-300">self</span>):
+        <span class="text-amber-300">self</span>.name = <span id="codeNameStr" class="text-emerald-300">"إسماعيل عدرا"</span>
+        <span class="text-amber-300">self</span>.role = <span id="codeRoleStr" class="text-emerald-300">"مهندس ذكاء اصطناعي ومعالجة لغات طبيعية"</span>
+        <span class="text-amber-300">self</span>.email = <span class="text-emerald-300">"asmaeeladra74@gmail.com"</span>
+        <span class="text-amber-300">self</span>.whatsapp = <span class="text-emerald-300">"+963 969 690 052"</span>
+        <span class="text-amber-300">self</span>.nlp_stack = [
+            <span class="text-emerald-300">"Arabic NLP"</span>, <span class="text-emerald-300">"Hugging Face"</span>,
+            <span class="text-emerald-300">"AraBERT"</span>, <span class="text-emerald-300">"PyTorch"</span>,
+            <span class="text-emerald-300">"RAG &amp; Vector DBs"</span>, <span class="text-emerald-300">"LLMs"</span>
+        ]
+
+    <span class="text-cyan-400">def</span> <span class="text-sky-400">deploy_model</span>(<span class="text-amber-300">self</span>):
+        <span class="text-slate-500"># Building intelligent Arabic NLP pipelines</span>
+        <span class="text-cyan-400">return</span> {
+            <span class="text-emerald-300">"status"</span>: <span class="text-emerald-300">"Active &amp; Ready"</span>,
+            <span class="text-emerald-300">"accuracy"</span>: <span class="text-cyan-300">0.962</span>
+        }</code></pre>
+              </div>
+
+              <!-- Interactive Output Console -->
+              <div dir="ltr" id="codeConsoleOutput" class="px-6 py-3.5 bg-slateDark-950/90 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+                <div class="flex items-center gap-2 text-emerald-400">
+                  <i class="fa-solid fa-terminal"></i>
+                  <span id="consoleStatusText">[READY] AIEngineer("إسماعيل عدرا") initialized...</span>
+                </div>
+                <span class="text-slate-500 hidden sm:inline">Python 3.11 • CUDA</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT & SKILLS SECTION -->
+    <section id="about" class="py-20 bg-white/60 dark:bg-slateDark-900/50 border-y border-slate-200 dark:border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- About Bio -->
+          <div class="lg:col-span-5 space-y-5">
+            <span class="text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-bold block">
+              // ABOUT ME
+            </span>
+            <h2 data-i18n="aboutTitle" class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+              نبذة عن إسماعيل عدرا
+            </h2>
+            <p id="aboutP1" class="text-slate-600 dark:text-slate-300 leading-relaxed text-base">
+              أنا مهندس ذكاء اصطناعي ومعالجة لغات طبيعية (<span class="font-mono text-emerald-600 dark:text-emerald-400">AI &amp; NLP Engineer</span>)، أركز على تطوير النماذج اللغوية الذكية التي تفهم اللغة العربية الفصحى واللهجات المختلفة وتستخلص منها المعاني بدقة عالية.
+            </p>
+            <p id="aboutP2" class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base">
+              أمتلك خبرة عملية في بناء خطوط معالجة البيانات النصية، وضبط نماذج المحولات (<span class="font-mono">Transformers Fine-Tuning</span>)، وتصميم أنظمة البحث الدلالي والاسترجاع المعزز بالتوليد (<span class="font-mono">RAG</span>) وربطها بواجهات برمجية متكاملة.
+            </p>
+
+            <!-- Personal Info Summary Box -->
+            <div class="p-5 rounded-2xl bg-slate-100 dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 space-y-3.5 pt-4">
+              <div class="flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-user-check text-emerald-500 w-5 text-center"></i>
+                <span data-i18n="infoNameLabel" class="text-slate-500 dark:text-slate-400">الاسم:</span>
+                <span data-i18n="infoNameVal" class="font-bold text-slate-900 dark:text-white">إسماعيل عدرا (Asmaeel Adra)</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-brain text-cyan-500 w-5 text-center"></i>
+                <span data-i18n="infoRoleLabel" class="text-slate-500 dark:text-slate-400">التخصص:</span>
+                <span data-i18n="infoRoleVal" class="font-bold text-slate-900 dark:text-white">ذكاء اصطناعي ومعالجة لغات طبيعية</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <i class="fa-brands fa-whatsapp text-emerald-500 w-5 text-center text-base"></i>
+                <span data-i18n="infoWhatsappLabel" class="text-slate-500 dark:text-slate-400">واتساب:</span>
+                <a href="https://wa.me/963969690052" target="_blank" rel="noopener noreferrer" dir="ltr" class="font-mono font-bold text-emerald-600 dark:text-emerald-400 hover:underline">+963 969 690 052</a>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <i class="fa-solid fa-envelope text-cyan-500 w-5 text-center"></i>
+                <span data-i18n="infoEmailLabel" class="text-slate-500 dark:text-slate-400">الإيميل:</span>
+                <a href="mailto:asmaeeladra74@gmail.com" class="font-mono font-bold text-cyan-600 dark:text-cyan-400 hover:underline">asmaeeladra74@gmail.com</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Skills Section -->
+          <div id="skills" class="lg:col-span-7 space-y-6 scroll-mt-28">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-microchip text-emerald-500"></i>
+              <span data-i18n="skillsHeading">المهارات التقنية والتخصصية</span>
+            </h3>
+
+            <div class="space-y-4">
+              <!-- Skill Bar 1 -->
+              <div class="p-4 rounded-2xl bg-white dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                  <span data-i18n="skill1" class="font-bold text-sm">معالجة اللغات الطبيعية العربية (Arabic NLP)</span>
+                  <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-bold">95%</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div class="skill-bar-fill h-full bg-gradient-to-l from-emerald-500 to-cyan-400 rounded-full" style="width: 95%"></div>
+                </div>
+              </div>
+
+              <!-- Skill Bar 2 -->
+              <div class="p-4 rounded-2xl bg-white dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                  <span data-i18n="skill2" class="font-bold text-sm">نماذج المحولات (Transformers: Hugging Face &amp; AraBERT)</span>
+                  <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-bold">93%</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div class="skill-bar-fill h-full bg-gradient-to-l from-emerald-500 to-cyan-400 rounded-full" style="width: 93%"></div>
+                </div>
+              </div>
+
+              <!-- Skill Bar 3 -->
+              <div class="p-4 rounded-2xl bg-white dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                  <span data-i18n="skill3" class="font-bold text-sm">التعلم العميق والشبكات العصبية (PyTorch)</span>
+                  <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-bold">90%</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div class="skill-bar-fill h-full bg-gradient-to-l from-emerald-500 to-cyan-400 rounded-full" style="width: 90%"></div>
+                </div>
+              </div>
+
+              <!-- Skill Bar 4 -->
+              <div class="p-4 rounded-2xl bg-white dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                  <span data-i18n="skill4" class="font-bold text-sm">أنظمة RAG وقواعد البيانات المتجهة (Vector Databases)</span>
+                  <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-bold">92%</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div class="skill-bar-fill h-full bg-gradient-to-l from-emerald-500 to-cyan-400 rounded-full" style="width: 92%"></div>
+                </div>
+              </div>
+
+              <!-- Skill Bar 5 -->
+              <div class="p-4 rounded-2xl bg-white dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                  <span data-i18n="skill5" class="font-bold text-sm">تعلم الآلة وهندسة البرمجيات (Machine Learning &amp; FastAPI)</span>
+                  <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-bold">91%</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div class="skill-bar-fill h-full bg-gradient-to-l from-emerald-500 to-cyan-400 rounded-full" style="width: 91%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Skill Tags -->
+            <div class="pt-2 flex flex-wrap gap-2">
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Python</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">PyTorch</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Hugging Face</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">AraBERT</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">LangChain</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">FAISS &amp; ChromaDB</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Scikit-Learn</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">FastAPI</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-bold block mb-2">
+              // AI &amp; NLP PORTFOLIO
+            </span>
+            <h2 data-i18n="projectsTitle" class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">معرض المشاريع الذكية</h2>
+          </div>
+
+          <!-- Category Filter Buttons -->
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-i18n="filterAll" class="proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-md shadow-emerald-600/25 transition-all" data-filter="all">
+              الكل
+            </button>
+            <button type="button" data-i18n="filterNlp" class="proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-200/80 dark:bg-slateDark-900 text-slate-700 dark:text-slate-300 hover:border-emerald-500 border border-transparent transition-all" data-filter="nlp">
+              معالجة اللغات (NLP)
+            </button>
+            <button type="button" data-i18n="filterRag" class="proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-200/80 dark:bg-slateDark-900 text-slate-700 dark:text-slate-300 hover:border-emerald-500 border border-transparent transition-all" data-filter="rag">
+              أنظمة RAG والبحث الدلالي
+            </button>
+            <button type="button" data-i18n="filterAgents" class="proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-200/80 dark:bg-slateDark-900 text-slate-700 dark:text-slate-300 hover:border-emerald-500 border border-transparent transition-all" data-filter="agents">
+              وكلاء المحادثة والتلخيص
+            </button>
+          </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <!-- Project 1 -->
+          <article class="project-card glass-card rounded-3xl bg-white dark:bg-slateDark-900 border border-slate-200 dark:border-slate-800 p-7 flex flex-col justify-between" data-category="nlp">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  Arabic Sentiment Analysis
+                </span>
+                <span class="text-xs font-mono text-cyan-500 font-bold">F1: 95.6%</span>
+              </div>
+
+              <h3 data-i18n="p1Title" class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                محلل المشاعر للنصوص واللهجات العربية
+              </h3>
+
+              <p data-i18n="p1Desc" class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                نموذج تعلم عميق يعتمد على AraBERT لتحليل آراء المستخدمين في منصات التواصل الاجتماعي وتصنيف المشاعر (إيجابي، سلبي، محايد) عبر عدة لهجات عربية.
+              </p>
+            </div>
+
+            <div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">PyTorch</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">AraBERT</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">Hugging Face</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">FastAPI</span>
+              </div>
+
+              <button type="button" data-project-id="p1" class="open-modal-btn w-full py-3 rounded-xl bg-slate-100 dark:bg-slateDark-950 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 font-bold text-sm transition-colors flex items-center justify-center gap-2">
+                <span data-i18n="btnCaseStudy">تفاصيل المشروع ودراسة الحالة</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card glass-card rounded-3xl bg-white dark:bg-slateDark-900 border border-slate-200 dark:border-slate-800 p-7 flex flex-col justify-between" data-category="rag">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">
+                  RAG &amp; Vector Search
+                </span>
+                <span class="text-xs font-mono text-emerald-500 font-bold">Semantic AI</span>
+              </div>
+
+              <h3 data-i18n="p2Title" class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                نظام RAG للبحث الذكي في الوثائق العربية
+              </h3>
+
+              <p data-i18n="p2Desc" class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                منظومة استرجاع معزز بالتوليد (Retrieval-Augmented Generation) تتيح البحث الدلالي في آلاف الصفحات وملفات PDF والإجابة عن الأسئلة بدقة مع ذكر المصدر.
+              </p>
+            </div>
+
+            <div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">LangChain</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">ChromaDB</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">Embeddings</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">LLMs</span>
+              </div>
+
+              <button type="button" data-project-id="p2" class="open-modal-btn w-full py-3 rounded-xl bg-slate-100 dark:bg-slateDark-950 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 font-bold text-sm transition-colors flex items-center justify-center gap-2">
+                <span data-i18n="btnCaseStudy">تفاصيل المشروع ودراسة الحالة</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card glass-card rounded-3xl bg-white dark:bg-slateDark-900 border border-slate-200 dark:border-slate-800 p-7 flex flex-col justify-between" data-category="agents">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                  Abstractive Summarization
+                </span>
+                <span class="text-xs font-mono text-cyan-500 font-bold">Seq2Seq</span>
+              </div>
+
+              <h3 data-i18n="p3Title" class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                محرك تلخيص النصوص الآلي واستخراج الكيانات
+              </h3>
+
+              <p data-i18n="p3Desc" class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                نظام ذكي لتلخيص المقالات والتقارير الإخبارية العربية الطويلة تلخيصاً توليدياً مكثفاً مع استخراج الكيانات المسماة (الأشخاص، المؤسسات، المواقع).
+              </p>
+            </div>
+
+            <div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">AraT5</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">NER</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">Transformers</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">Docker</span>
+              </div>
+
+              <button type="button" data-project-id="p3" class="open-modal-btn w-full py-3 rounded-xl bg-slate-100 dark:bg-slateDark-950 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 font-bold text-sm transition-colors flex items-center justify-center gap-2">
+                <span data-i18n="btnCaseStudy">تفاصيل المشروع ودراسة الحالة</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card glass-card rounded-3xl bg-white dark:bg-slateDark-900 border border-slate-200 dark:border-slate-800 p-7 flex flex-col justify-between" data-category="agents">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">
+                  Conversational AI Agent
+                </span>
+                <span class="text-xs font-mono text-emerald-500 font-bold">Multi-Turn</span>
+              </div>
+
+              <h3 data-i18n="p4Title" class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                وكيل محادثة ذكي متعدد المهام باللغة العربية
+              </h3>
+
+              <p data-i18n="p4Desc" class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                وكيل ذكاء اصطناعي تفاعلي يحتفظ بسياق الحوار ويفهم نوايا المستخدم (Intent Recognition) لتنفيذ المهام البرمجية والرد على الاستفسارات المعقدة.
+              </p>
+            </div>
+
+            <div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">LLM Agents</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">Prompt Engineering</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">Memory</span>
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-100 dark:bg-slateDark-950 text-slate-700 dark:text-slate-300">WebSockets</span>
+              </div>
+
+              <button type="button" data-project-id="p4" class="open-modal-btn w-full py-3 rounded-xl bg-slate-100 dark:bg-slateDark-950 hover:bg-emerald-600 hover:text-white text-slate-800 dark:text-slate-200 font-bold text-sm transition-colors flex items-center justify-center gap-2">
+                <span data-i18n="btnCaseStudy">تفاصيل المشروع ودراسة الحالة</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-white/60 dark:bg-slateDark-900/50 border-t border-slate-200 dark:border-slate-800/80 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Direct Contact Cards (WhatsApp, Email, GitHub) -->
+          <div class="lg:col-span-5 space-y-5">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-bold block mb-2">
+                // CONTACT INFO
+              </span>
+              <h2 data-i18n="contactTitle" class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">تواصل مع إسماعيل عدرا</h2>
+              <p data-i18n="contactSubtitle" class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3 leading-relaxed">
+                يمكنك التواصل معي مباشرة عبر واتساب أو البريد الإلكتروني لمناقشة المشاريع والتعاون التقني في مجال الذكاء الاصطناعي ومعالجة اللغات الطبيعية:
+              </p>
+            </div>
+
+            <!-- WhatsApp Direct Card -->
+            <a href="https://wa.me/963969690052" target="_blank" rel="noopener noreferrer" class="glass-card block p-5 rounded-2xl bg-white dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all group">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-2xl group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div>
+                  <span data-i18n="cardWhatsappLabel" class="text-xs text-slate-500 dark:text-slate-400 block font-semibold">واتساب مباشر</span>
+                  <span dir="ltr" class="text-base sm:text-lg font-mono font-bold text-slate-900 dark:text-white group-hover:text-emerald-500 transition-colors inline-block mt-0.5">
+                    +963 969 690 052
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Email Direct Card -->
+            <div class="glass-card p-5 rounded-2xl bg-white dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 hover:border-cyan-500 transition-all">
+              <div class="flex items-center justify-between gap-3">
+                <a href="mailto:asmaeeladra74@gmail.com" class="flex items-center gap-4 group">
+                  <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-xl group-hover:bg-cyan-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div>
+                    <span data-i18n="cardEmailLabel" class="text-xs text-slate-500 dark:text-slate-400 block font-semibold">البريد الإلكتروني</span>
+                    <span class="text-sm sm:text-base font-mono font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 transition-colors break-all">
+                      asmaeeladra74@gmail.com
+                    </span>
+                  </div>
+                </a>
+                <button id="copyEmailBtn" type="button" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slateDark-900 hover:bg-emerald-600 hover:text-white text-slate-600 dark:text-slate-300 text-xs font-mono transition-colors shrink-0 flex items-center gap-1.5">
+                  <i class="fa-regular fa-copy"></i>
+                  <span data-i18n="copyBtn">نسخ</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- GitHub Card -->
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="glass-card block p-5 rounded-2xl bg-white dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all group">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-slate-500/10 text-slate-700 dark:text-slate-300 flex items-center justify-center text-2xl group-hover:bg-slate-800 group-hover:text-white transition-colors">
+                  <i class="fa-brands fa-github"></i>
+                </div>
+                <div>
+                  <span data-i18n="cardGithubLabel" class="text-xs text-slate-500 dark:text-slate-400 block font-semibold">المستودعات البرمجية والنماذج</span>
+                  <span class="text-sm sm:text-base font-mono font-bold text-slate-900 dark:text-white group-hover:text-emerald-500 transition-colors inline-block mt-0.5">
+                    github.com/asmaeel-adra
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Interactive Contact Form -->
+          <div class="lg:col-span-7">
+            <div class="p-7 sm:p-8 rounded-3xl bg-white dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800 shadow-xl">
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2.5">
+                <i class="fa-solid fa-paper-plane text-emerald-500"></i>
+                <span data-i18n="formTitle">نموذج المراسلة السريعة</span>
+              </h3>
+
+              <form id="contactForm" class="space-y-5" novalidate>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label for="senderName" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                      <span data-i18n="labelName">الاسم الكامل</span> <span class="text-rose-500">*</span>
+                    </label>
+                    <input type="text" id="senderName" required placeholder="أدخل اسمك الكريم"
+                      class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slateDark-900 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors" />
+                    <p id="nameErr" data-i18n="errName" class="text-xs text-rose-500 mt-1 hidden">يرجى إدخال الاسم.</p>
+                  </div>
+
+                  <div>
+                    <label for="senderEmail" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                      <span data-i18n="labelEmail">البريد الإلكتروني</span> <span class="text-rose-500">*</span>
+                    </label>
+                    <input type="email" id="senderEmail" required placeholder="name@example.com"
+                      class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slateDark-900 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors" />
+                    <p id="emailErr" data-i18n="errEmail" class="text-xs text-rose-500 mt-1 hidden">يرجى إدخال بريد إلكتروني صحيح.</p>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="senderSubject" data-i18n="labelSubject" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                    الموضوع
+                  </label>
+                  <input type="text" id="senderSubject" placeholder="مثال: مشروع ذكاء اصطناعي ومعالجة لغات طبيعية"
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slateDark-900 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors" />
+                </div>
+
+                <div>
+                  <label for="senderMessage" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">
+                    <span data-i18n="labelMessage">الرسالة</span> <span class="text-rose-500">*</span>
+                  </label>
+                  <textarea id="senderMessage" rows="4" required placeholder="اكتب رسالتك هنا..."
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slateDark-900 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors resize-none"></textarea>
+                  <p id="msgErr" data-i18n="errMsg" class="text-xs text-rose-500 mt-1 hidden">يرجى كتابة محتوى الرسالة.</p>
+                </div>
+
+                <button type="submit" id="formSubmitBtn" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-l from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/25 transition-all flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span data-i18n="btnSend">إرسال الرسالة</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Project Details Modal -->
+  <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+    <div id="projectModalBox" class="bg-white dark:bg-slateDark-900 border border-slate-200 dark:border-slate-700 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl transform scale-95 transition-transform duration-300 relative">
+      <button id="closeModalBtn" type="button" aria-label="Close Modal" class="absolute top-5 left-5 w-9 h-9 rounded-xl bg-slate-100 dark:bg-slateDark-800 text-slate-600 dark:text-slate-300 hover:bg-emerald-600 hover:text-white transition-colors flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <span id="modalCategory" class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20 inline-block mb-3"></span>
+      <h3 id="modalTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mb-6"></h3>
+
+      <div class="space-y-4 mb-6">
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slateDark-950 border border-slate-200 dark:border-slate-800">
+          <h4 class="text-xs font-bold text-rose-500 mb-1.5 flex items-center gap-2">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span data-i18n="modalProblemHeading">المشكلة والتحدي التقني:</span>
+          </h4>
+          <p id="modalProblem" class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed"></p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-emerald-500/5 border border-emerald-500/20">
+          <h4 class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mb-1.5 flex items-center gap-2">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span data-i18n="modalSolutionHeading">الحل الهندسي:</span>
+          </h4>
+          <p id="modalSolution" class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed"></p>
+        </div>
+      </div>
+
+      <div>
+        <span data-i18n="modalTechHeading" class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">التقنيات والأدوات:</span>
+        <div id="modalTech" dir="ltr" class="p-3 rounded-xl bg-slate-100 dark:bg-slateDark-950 font-mono text-xs text-emerald-600 dark:text-emerald-400 border border-slate-200 dark:border-slate-800 text-left"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBox" class="fixed bottom-6 left-6 z-50 max-w-sm rounded-2xl bg-slateDark-900 border border-emerald-500 text-white p-4 shadow-2xl flex items-center gap-3.5 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <div>
+      <h5 id="toastTitle" class="text-sm font-bold">تم الإرسال بنجاح!</h5>
+      <p id="toastSub" class="text-xs text-slate-300 mt-0.5">شكراً لتواصلك مع إسماعيل عدرا، سيتم الرد عليك قريباً.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800/80 py-8 bg-white dark:bg-slateDark-950 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+        <span data-i18n="footerName" class="font-bold text-slate-800 dark:text-slate-200">إسماعيل عدرا (Asmaeel Adra)</span>
+        <span>— <span data-i18n="footerRole">مهندس ذكاء اصطناعي ومعالجة لغات طبيعية</span> &copy; <span id="currentYear"></span></span>
+      </div>
+      <div class="flex items-center gap-5 font-mono text-xs">
+        <a href="mailto:asmaeeladra74@gmail.com" class="hover:text-emerald-500 transition-colors">asmaeeladra74@gmail.com</a>
+        <a href="https://wa.me/963969690052" target="_blank" rel="noopener noreferrer" dir="ltr" class="hover:text-emerald-500 transition-colors">+963 969 690 052</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript with Full Bilingual (AR / EN) Support -->
+  <script>
+    // 1. Set Current Year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // 2. Bilingual Dictionary (Arabic & English)
+    const translations = {
+      ar: {
+        pageTitle: 'إسماعيل عدرا | مهندس ذكاء اصطناعي ومعالجة لغات طبيعية',
+        langSwitchLabel: 'EN',
+        brandName: 'إسماعيل عدرا',
+        navHome: 'الرئيسية',
+        navAbout: 'عنّي',
+        navSkills: 'المهارات',
+        navProjects: 'المشاريع',
+        navContact: 'تواصل معي',
+        heroBadge: 'مهندس ذكاء اصطناعي ومعالجة لغات طبيعية',
+        heroGreeting: 'مرحباً، أنا',
+        heroName: 'إسماعيل عدرا',
+        heroDescHTML: 'متخصص في بناء وتدريب نماذج الذكاء الاصطناعي ومعالجة اللغات الطبيعية (<span class="font-mono text-slate-900 dark:text-slate-200">NLP &amp; LLMs</span>). أعمل على تطوير الأنظمة الذكية القادرة على فهم وتحليل وتوليد النصوص العربية بدقة عالية، وتصميم معماريات الاسترجاع المعزز (<span class="font-mono text-slate-900 dark:text-slate-200">RAG</span>) وحلول التعلم العميق.',
+        btnExploreProjects: 'استعراض المشاريع',
+        btnWhatsapp: 'تواصل عبر واتساب',
+        runCodeBtn: 'تشغيل الكود',
+        codeName: '"إسماعيل عدرا"',
+        codeRole: '"مهندس ذكاء اصطناعي ومعالجة لغات طبيعية"',
+        consoleReady: '[READY] AIEngineer("إسماعيل عدرا") initialized...',
+        consoleRunning: 'Running Arabic NLP Pipeline (AraBERT)...',
+        consoleSuccess: 'Success! Model Accuracy: 96.2% | Email: asmaeeladra74@gmail.com',
+        aboutTitle: 'نبذة عن إسماعيل عدرا',
+        aboutP1HTML: 'أنا مهندس ذكاء اصطناعي ومعالجة لغات طبيعية (<span class="font-mono text-emerald-600 dark:text-emerald-400">AI &amp; NLP Engineer</span>)، أركز على تطوير النماذج اللغوية الذكية التي تفهم اللغة العربية الفصحى واللهجات المختلفة وتستخلص منها المعاني بدقة عالية.',
+        aboutP2HTML: 'أمتلك خبرة عملية في بناء خطوط معالجة البيانات النصية، وضبط نماذج المحولات (<span class="font-mono">Transformers Fine-Tuning</span>)، وتصميم أنظمة البحث الدلالي والاسترجاع المعزز بالتوليد (<span class="font-mono">RAG</span>) وربطها بواجهات برمجية متكاملة.',
+        infoNameLabel: 'الاسم:',
+        infoNameVal: 'إسماعيل عدرا (Asmaeel Adra)',
+        infoRoleLabel: 'التخصص:',
+        infoRoleVal: 'ذكاء اصطناعي ومعالجة لغات طبيعية',
+        infoWhatsappLabel: 'واتساب:',
+        infoEmailLabel: 'الإيميل:',
+        skillsHeading: 'المهارات التقنية والتخصصية',
+        skill1: 'معالجة اللغات الطبيعية العربية (Arabic NLP)',
+        skill2: 'نماذج المحولات (Transformers: Hugging Face & AraBERT)',
+        skill3: 'التعلم العميق والشبكات العصبية (PyTorch)',
+        skill4: 'أنظمة RAG وقواعد البيانات المتجهة (Vector Databases)',
+        skill5: 'تعلم الآلة وهندسة البرمجيات (Machine Learning & FastAPI)',
+        projectsTitle: 'معرض المشاريع الذكية',
+        filterAll: 'الكل',
+        filterNlp: 'معالجة اللغات (NLP)',
+        filterRag: 'أنظمة RAG والبحث الدلالي',
+        filterAgents: 'وكلاء المحادثة والتلخيص',
+        btnCaseStudy: 'تفاصيل المشروع ودراسة الحالة',
+        p1Title: 'محلل المشاعر للنصوص واللهجات العربية',
+        p1Desc: 'نموذج تعلم عميق يعتمد على AraBERT لتحليل آراء المستخدمين في منصات التواصل الاجتماعي وتصنيف المشاعر (إيجابي، سلبي، محايد) عبر عدة لهجات عربية.',
+        p2Title: 'نظام RAG للبحث الذكي في الوثائق العربية',
+        p2Desc: 'منظومة استرجاع معزز بالتوليد (Retrieval-Augmented Generation) تتيح البحث الدلالي في آلاف الصفحات وملفات PDF والإجابة عن الأسئلة بدقة مع ذكر المصدر.',
+        p3Title: 'محرك تلخيص النصوص الآلي واستخراج الكيانات',
+        p3Desc: 'نظام ذكي لتلخيص المقالات والتقارير الإخبارية العربية الطويلة تلخيصاً توليدياً مكثفاً مع استخراج الكيانات المسماة (الأشخاص، المؤسسات، المواقع).',
+        p4Title: 'وكيل محادثة ذكي متعدد المهام باللغة العربية',
+        p4Desc: 'وكيل ذكاء اصطناعي تفاعلي يحتفظ بسياق الحوار ويفهم نوايا المستخدم (Intent Recognition) لتنفيذ المهام البرمجية والرد على الاستفسارات المعقدة.',
+        modalProblemHeading: 'المشكلة والتحدي التقني:',
+        modalSolutionHeading: 'الحل الهندسي:',
+        modalTechHeading: 'التقنيات والأدوات:',
+        contactTitle: 'تواصل مع إسماعيل عدرا',
+        contactSubtitle: 'يمكنك التواصل معي مباشرة عبر واتساب أو البريد الإلكتروني لمناقشة المشاريع والتعاون التقني في مجال الذكاء الاصطناعي ومعالجة اللغات الطبيعية:',
+        cardWhatsappLabel: 'واتساب مباشر',
+        cardEmailLabel: 'البريد الإلكتروني',
+        copyBtn: 'نسخ',
+        cardGithubLabel: 'المستودعات البرمجية والنماذج',
+        formTitle: 'نموذج المراسلة السريعة',
+        labelName: 'الاسم الكامل',
+        placeholderName: 'أدخل اسمك الكريم',
+        errName: 'يرجى إدخال الاسم.',
+        labelEmail: 'البريد الإلكتروني',
+        placeholderEmail: 'name@example.com',
+        errEmail: 'يرجى إدخال بريد إلكتروني صحيح.',
+        labelSubject: 'الموضوع',
+        placeholderSubject: 'مثال: مشروع ذكاء اصطناعي ومعالجة لغات طبيعية',
+        labelMessage: 'الرسالة',
+        placeholderMessage: 'اكتب رسالتك هنا...',
+        errMsg: 'يرجى كتابة محتوى الرسالة.',
+        btnSend: 'إرسال الرسالة',
+        toastCopyTitle: 'تم نسخ البريد الإلكتروني',
+        toastCopySub: 'asmaeeladra74@gmail.com جاهز للصق.',
+        toastSendTitle: 'تم استلام رسالتك بنجاح!',
+        toastSendSub: 'شكراً لتواصلك مع إسماعيل عدرا، سيتم الرد عليك قريباً.',
+        footerName: 'إسماعيل عدرا (Asmaeel Adra)',
+        footerRole: 'مهندس ذكاء اصطناعي ومعالجة لغات طبيعية',
+        typewriterPhrases: [
+          'معالجة اللغات الطبيعية للنصوص العربية (Arabic NLP)',
+          'تطوير وضبط النماذج اللغوية الكبيرة (LLMs & AraBERT)',
+          'تصميم أنظمة البحث الدلالي والاسترجاع المعزز (RAG)',
+          'بناء نماذج التعلم العميق باستخدام PyTorch'
+        ],
+        projectsData: {
+          p1: {
+            title: 'محلل المشاعر للنصوص واللهجات العربية',
+            category: 'معالجة اللغات الطبيعية (Arabic NLP)',
+            problem: 'تنوع اللهجات العربية والكتابة غير المعيارية في التعليقات يجعل خوارزميات التصنيف التقليدية غير قادرة على فهم السياق الحقيقي.',
+            solution: 'تنظيف وتوحيد النصوص العربية برمجياً ثم عمل Fine-Tuning لنموذج AraBERT على بيانات مصنفة، مما رفع دقة التصنيف إلى 95.6%.',
+            tech: 'Python, PyTorch, Hugging Face Transformers, AraBERT, CAMeL Tools, FastAPI'
+          },
+          p2: {
+            title: 'نظام RAG للبحث الذكي في الوثائق العربية',
+            category: 'أنظمة RAG وقواعد البيانات المتجهة',
+            problem: 'صعوبة البحث بالكلمات المفتاحية التقليدية داخل الوثائق الطويلة، واحتمالية توليد إجابات غير موثقة عند استخدام النماذج اللغوية بمفردها.',
+            solution: 'بناء خط أنابيب يقوم بتحويل الفقرات إلى متجهات رقمية (Embeddings) وتخزينها في ChromaDB، لاسترجاع السياق الدقيق وتمريره للنموذج اللغوي.',
+            tech: 'Python, LangChain, ChromaDB, FAISS, Multilingual Embeddings, Open-Source LLMs'
+          },
+          p3: {
+            title: 'محرك تلخيص النصوص الآلي واستخراج الكيانات',
+            category: 'التلخيص الآلي ومعالجة النصوص',
+            problem: 'الحاجة إلى قراءة وتحليل مئات التقارير اليومية واستخلاص الملخصات والكيانات الفاعلة في ثوانٍ معدودة.',
+            solution: 'ضبط نموذج AraT5 التوليدي لمهام التلخيص التجريدي مع دمج مصنف NER لاستخراج الأسماء والمنظمات والمواقع تلقائياً.',
+            tech: 'Python, AraT5, Hugging Face, spaCy, FastAPI, Docker'
+          },
+          p4: {
+            title: 'وكيل محادثة ذكي متعدد المهام باللغة العربية',
+            category: 'وكلاء الذكاء الاصطناعي (AI Agents)',
+            problem: 'فقدان سياق الحوار في البوتات التقليدية وعدم قدرتها على ربط الأسئلة المتتالية أو استدعاء الأدوات الخارجية.',
+            solution: 'تصميم وكيل ذكي مزود بذاكرة محادثة ديناميكية وقدرة على تحليل النوايا واستدعاء واجهات برمجة التطبيقات (Function Calling) باللغة العربية.',
+            tech: 'Python, LangChain Agents, LoRA Fine-Tuning, FastAPI, WebSockets'
+          }
+        }
+      },
+      en: {
+        pageTitle: 'Asmaeel Adra | AI & Natural Language Processing Engineer',
+        langSwitchLabel: 'عربي',
+        brandName: 'Asmaeel Adra',
+        navHome: 'Home',
+        navAbout: 'About',
+        navSkills: 'Skills',
+        navProjects: 'Projects',
+        navContact: 'Contact',
+        heroBadge: 'AI & Natural Language Processing Engineer',
+        heroGreeting: "Hi, I'm",
+        heroName: 'Asmaeel Adra',
+        heroDescHTML: 'Specialized in building and fine-tuning Artificial Intelligence and Natural Language Processing (<span class="font-mono text-slate-900 dark:text-slate-200">NLP &amp; LLMs</span>) models. I engineer intelligent systems capable of understanding, analyzing, and generating Arabic text with high precision, alongside Retrieval-Augmented Generation (<span class="font-mono text-slate-900 dark:text-slate-200">RAG</span>) architectures and Deep Learning solutions.',
+        btnExploreProjects: 'Explore Projects',
+        btnWhatsapp: 'Chat on WhatsApp',
+        runCodeBtn: 'Run Code',
+        codeName: '"Asmaeel Adra"',
+        codeRole: '"AI & Natural Language Processing Engineer"',
+        consoleReady: '[READY] AIEngineer("Asmaeel Adra") initialized...',
+        consoleRunning: 'Running Arabic NLP Pipeline (AraBERT)...',
+        consoleSuccess: 'Success! Model Accuracy: 96.2% | Email: asmaeeladra74@gmail.com',
+        aboutTitle: 'About Asmaeel Adra',
+        aboutP1HTML: 'I am an AI & Natural Language Processing Engineer (<span class="font-mono text-emerald-600 dark:text-emerald-400">AI &amp; NLP Engineer</span>), focused on developing intelligent language models that comprehend Modern Standard Arabic and regional dialects to extract insights with high accuracy.',
+        aboutP2HTML: 'I have hands-on experience building text preprocessing pipelines, fine-tuning Transformer architectures (<span class="font-mono">Transformers Fine-Tuning</span>), and designing semantic search and Retrieval-Augmented Generation (<span class="font-mono">RAG</span>) systems integrated with production-ready APIs.',
+        infoNameLabel: 'Name:',
+        infoNameVal: 'Asmaeel Adra (إسماعيل عدرا)',
+        infoRoleLabel: 'Specialty:',
+        infoRoleVal: 'AI & Natural Language Processing',
+        infoWhatsappLabel: 'WhatsApp:',
+        infoEmailLabel: 'Email:',
+        skillsHeading: 'Technical & Specialized Skills',
+        skill1: 'Arabic Natural Language Processing (Arabic NLP)',
+        skill2: 'Transformer Models (Hugging Face & AraBERT)',
+        skill3: 'Deep Learning & Neural Networks (PyTorch)',
+        skill4: 'RAG Systems & Vector Databases',
+        skill5: 'Machine Learning & API Engineering (ML & FastAPI)',
+        projectsTitle: 'AI & NLP Projects Showcase',
+        filterAll: 'All',
+        filterNlp: 'NLP & Text',
+        filterRag: 'RAG & Semantic Search',
+        filterAgents: 'AI Agents & Summarization',
+        btnCaseStudy: 'Project Details & Case Study',
+        p1Title: 'Arabic Text & Dialect Sentiment Analyzer',
+        p1Desc: 'A Deep Learning model powered by AraBERT to analyze social media feedback and classify sentiment (Positive, Negative, Neutral) across multiple Arabic dialects.',
+        p2Title: 'RAG System for Intelligent Arabic Document Search',
+        p2Desc: 'A Retrieval-Augmented Generation pipeline enabling semantic search across thousands of pages and PDFs, answering queries accurately with source citations.',
+        p3Title: 'Abstractive Text Summarization & NER Engine',
+        p3Desc: 'An intelligent system for summarizing lengthy Arabic news articles and reports into concise abstracts while extracting Named Entities (People, Organizations, Locations).',
+        p4Title: 'Multi-Task Arabic Conversational AI Agent',
+        p4Desc: 'An interactive AI agent that retains conversational context and recognizes user intent to execute software tasks and answer complex multi-turn queries.',
+        modalProblemHeading: 'Problem & Technical Challenge:',
+        modalSolutionHeading: 'Engineering Solution:',
+        modalTechHeading: 'Technologies & Tools:',
+        contactTitle: 'Get in Touch with Asmaeel Adra',
+        contactSubtitle: 'Feel free to reach out directly via WhatsApp or Email to discuss projects and technical collaboration in Artificial Intelligence and Natural Language Processing:',
+        cardWhatsappLabel: 'Direct WhatsApp',
+        cardEmailLabel: 'Email Address',
+        copyBtn: 'Copy',
+        cardGithubLabel: 'Code Repositories & Models',
+        formTitle: 'Quick Contact Form',
+        labelName: 'Full Name',
+        placeholderName: 'Enter your full name',
+        errName: 'Please enter your name.',
+        labelEmail: 'Email Address',
+        placeholderEmail: 'name@example.com',
+        errEmail: 'Please enter a valid email address.',
+        labelSubject: 'Subject',
+        placeholderSubject: 'e.g., AI & Natural Language Processing Project',
+        labelMessage: 'Message',
+        placeholderMessage: 'Write your message here...',
+        errMsg: 'Please enter your message.',
+        btnSend: 'Send Message',
+        toastCopyTitle: 'Email Copied to Clipboard',
+        toastCopySub: 'asmaeeladra74@gmail.com is ready to paste.',
+        toastSendTitle: 'Message Sent Successfully!',
+        toastSendSub: 'Thank you for reaching out to Asmaeel Adra. You will receive a reply soon.',
+        footerName: 'Asmaeel Adra (إسماعيل عدرا)',
+        footerRole: 'AI & Natural Language Processing Engineer',
+        typewriterPhrases: [
+          'Arabic Natural Language Processing (Arabic NLP)',
+          'Fine-Tuning Large Language Models (LLMs & AraBERT)',
+          'Semantic Search & Retrieval-Augmented Generation (RAG)',
+          'Deep Learning Model Engineering with PyTorch'
+        ],
+        projectsData: {
+          p1: {
+            title: 'Arabic Text & Dialect Sentiment Analyzer',
+            category: 'Natural Language Processing (Arabic NLP)',
+            problem: 'The diversity of Arabic dialects and non-standard orthography in user comments makes traditional classification algorithms unable to capture true contextual sentiment.',
+            solution: 'Built a programmatic Arabic text normalization pipeline and fine-tuned AraBERT on annotated datasets, achieving an F1-score of 95.6%.',
+            tech: 'Python, PyTorch, Hugging Face Transformers, AraBERT, CAMeL Tools, FastAPI'
+          },
+          p2: {
+            title: 'RAG System for Intelligent Arabic Document Search',
+            category: 'RAG Systems & Vector Databases',
+            problem: 'Keyword-based search fails to retrieve semantic meaning inside lengthy documents, while standalone LLMs risk generating ungrounded hallucinations.',
+            solution: 'Architected an embedding pipeline storing dense paragraph vectors in ChromaDB to retrieve exact contextual chunks and ground LLM responses with citations.',
+            tech: 'Python, LangChain, ChromaDB, FAISS, Multilingual Embeddings, Open-Source LLMs'
+          },
+          p3: {
+            title: 'Abstractive Text Summarization & NER Engine',
+            category: 'Abstractive Summarization & NLP',
+            problem: 'The need to rapidly process hundreds of daily reports and extract concise summaries alongside key named entities within seconds.',
+            solution: 'Fine-tuned the generative AraT5 model for abstractive summarization combined with a custom NER classifier to automatically extract people, organizations, and locations.',
+            tech: 'Python, AraT5, Hugging Face, spaCy, FastAPI, Docker'
+          },
+          p4: {
+            title: 'Multi-Task Arabic Conversational AI Agent',
+            category: 'Conversational AI Agents',
+            problem: 'Traditional chatbots lose conversational context across turns and lack the ability to chain follow-up questions or invoke external APIs.',
+            solution: 'Engineered a stateful AI agent equipped with dynamic conversation memory, intent classification, and Arabic function-calling capabilities.',
+            tech: 'Python, LangChain Agents, LoRA Fine-Tuning, FastAPI, WebSockets'
+          }
+        }
+      }
+    };
+
+    let currentLang = localStorage.getItem('asmaeel_portfolio_lang') || 'ar';
+    let currentModalProjectId = null;
+
+    // 3. Dark / Light Mode Toggle
+    const themeBtn = document.getElementById('themeBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlEl = document.documentElement;
+
+    function applyTheme(isDark) {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        themeIcon.className = 'fa-solid fa-sun text-base';
+        localStorage.setItem('asmaeel_portfolio_theme', 'dark');
+      } else {
+        htmlEl.classList.remove('dark');
+        themeIcon.className = 'fa-solid fa-moon text-base';
+        localStorage.setItem('asmaeel_portfolio_theme', 'light');
+      }
+    }
+
+    const savedTheme = localStorage.getItem('asmaeel_portfolio_theme');
+    applyTheme(savedTheme !== 'light');
+
+    themeBtn.addEventListener('click', () => {
+      applyTheme(!htmlEl.classList.contains('dark'));
+    });
+
+    // 4. Typewriter Effect (Language-Aware)
+    let pIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeTimer = null;
+    const typeEl = document.getElementById('typewriterText');
+
+    function typeLoop() {
+      const phrases = translations[currentLang].typewriterPhrases;
+      if (pIndex >= phrases.length) pIndex = 0;
+      const currentPhrase = phrases[pIndex];
+
+      typeEl.textContent = isDeleting
+        ? currentPhrase.substring(0, charIndex--)
+        : currentPhrase.substring(0, ++charIndex);
+
+      let speed = isDeleting ? 28 : 60;
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        speed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        pIndex = (pIndex + 1) % phrases.length;
+        speed = 350;
+      }
+      typeTimer = setTimeout(typeLoop, speed);
+    }
+
+    function restartTypewriter() {
+      clearTimeout(typeTimer);
+      pIndex = 0;
+      charIndex = 0;
+      isDeleting = false;
+      typeEl.textContent = '';
+      typeLoop();
+    }
+
+    // 5. Apply Language & RTL/LTR Directional Adjustments
+    function applyLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('asmaeel_portfolio_lang', lang);
+      const t = translations[lang];
+      const isAr = lang === 'ar';
+
+      // Set HTML lang and dir attributes
+      htmlEl.setAttribute('lang', lang);
+      htmlEl.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+      document.title = t.pageTitle;
+
+      // Update Language Toggle Button Label
+      document.getElementById('langBtnText').textContent = t.langSwitchLabel;
+
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) {
+          el.textContent = t[key];
+        }
+      });
+
+      // Update HTML-rich paragraphs
+      document.getElementById('heroDesc').innerHTML = t.heroDescHTML;
+      document.getElementById('aboutP1').innerHTML = t.aboutP1HTML;
+      document.getElementById('aboutP2').innerHTML = t.aboutP2HTML;
+
+      // Update Form Placeholders
+      document.getElementById('senderName').placeholder = t.placeholderName;
+      document.getElementById('senderEmail').placeholder = t.placeholderEmail;
+      document.getElementById('senderSubject').placeholder = t.placeholderSubject;
+      document.getElementById('senderMessage').placeholder = t.placeholderMessage;
+
+      // Update Python Code Card strings & Console
+      document.getElementById('codeNameStr').textContent = t.codeName;
+      document.getElementById('codeRoleStr').textContent = t.codeRole;
+      document.getElementById('consoleStatusText').textContent = t.consoleReady;
+
+      // Directional UI adjustments (Gradients, Modal Close Button, Toast Position)
+      const heroNameGradient = document.getElementById('heroNameGradient');
+      const heroProjectsBtn = document.getElementById('heroProjectsBtn');
+      const formSubmitBtn = document.getElementById('formSubmitBtn');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const toastBox = document.getElementById('toastBox');
+
+      if (isAr) {
+        heroNameGradient.classList.remove('bg-gradient-to-r');
+        heroNameGradient.classList.add('bg-gradient-to-l');
+        heroProjectsBtn.classList.remove('bg-gradient-to-r');
+        heroProjectsBtn.classList.add('bg-gradient-to-l');
+        formSubmitBtn.classList.remove('bg-gradient-to-r');
+        formSubmitBtn.classList.add('bg-gradient-to-l');
+
+        document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.classList.remove('bg-gradient-to-r');
+          bar.classList.add('bg-gradient-to-l');
+        });
+
+        closeModalBtn.classList.remove('right-5');
+        closeModalBtn.classList.add('left-5');
+
+        toastBox.classList.remove('right-6');
+        toastBox.classList.add('left-6');
+      } else {
+        heroNameGradient.classList.remove('bg-gradient-to-l');
+        heroNameGradient.classList.add('bg-gradient-to-r');
+        heroProjectsBtn.classList.remove('bg-gradient-to-l');
+        heroProjectsBtn.classList.add('bg-gradient-to-r');
+        formSubmitBtn.classList.remove('bg-gradient-to-l');
+        formSubmitBtn.classList.add('bg-gradient-to-r');
+
+        document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.classList.remove('bg-gradient-to-l');
+          bar.classList.add('bg-gradient-to-r');
+        });
+
+        closeModalBtn.classList.remove('left-5');
+        closeModalBtn.classList.add('right-5');
+
+        toastBox.classList.remove('left-6');
+        toastBox.classList.add('right-6');
+      }
+
+      // If Project Modal is currently open, refresh its content in the new language
+      if (currentModalProjectId && !projectModal.classList.contains('hidden')) {
+        populateModalContent(currentModalProjectId);
+      }
+
+      // Restart typewriter in active language
+      restartTypewriter();
+    }
+
+    // Language Switcher Button Event
+    const langBtn = document.getElementById('langBtn');
+    langBtn.addEventListener('click', () => {
+      const nextLang = currentLang === 'ar' ? 'en' : 'ar';
+      applyLanguage(nextLang);
+    });
+
+    // 6. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // 7. Python Code Card Interactive Simulation
+    const runBtn = document.getElementById('runCodeSimulationBtn');
+    const consoleText = document.getElementById('consoleStatusText');
+    runBtn.addEventListener('click', () => {
+      const t = translations[currentLang];
+      consoleText.textContent = t.consoleRunning;
+      setTimeout(() => {
+        consoleText.textContent = translations[currentLang].consoleSuccess;
+      }, 850);
+    });
+
+    // 8. Filterable Projects
+    const filterButtons = document.querySelectorAll('.proj-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.className = 'proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-200/80 dark:bg-slateDark-900 text-slate-700 dark:text-slate-300 hover:border-emerald-500 border border-transparent transition-all';
+        });
+        btn.className = 'proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-600 text-white shadow-md shadow-emerald-600/25 transition-all';
+
+        const filterValue = btn.getAttribute('data-filter');
+        projectCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 9. Project Case Study Modal (Language-Aware)
+    const projectModal = document.getElementById('projectModal');
+    const projectModalBox = document.getElementById('projectModalBox');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    function populateModalContent(projectId) {
+      const pData = translations[currentLang].projectsData[projectId];
+      if (!pData) return;
+      document.getElementById('modalTitle').textContent = pData.title;
+      document.getElementById('modalCategory').textContent = pData.category;
+      document.getElementById('modalProblem').textContent = pData.problem;
+      document.getElementById('modalSolution').textContent = pData.solution;
+      document.getElementById('modalTech').textContent = pData.tech;
+    }
+
+    document.querySelectorAll('.open-modal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentModalProjectId = btn.getAttribute('data-project-id');
+        populateModalContent(currentModalProjectId);
+
+        projectModal.classList.remove('hidden');
+        setTimeout(() => {
+          projectModal.classList.remove('opacity-0');
+          projectModalBox.classList.remove('scale-95');
+        }, 20);
+      });
+    });
+
+    function closeProjectModal() {
+      projectModal.classList.add('opacity-0');
+      projectModalBox.classList.add('scale-95');
+      setTimeout(() => {
+        projectModal.classList.add('hidden');
+        currentModalProjectId = null;
+      }, 280);
+    }
+
+    closeModalBtn.addEventListener('click', closeProjectModal);
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) closeProjectModal();
+    });
+
+    // 10. Toast Notification & Copy Email
+    const toastBox = document.getElementById('toastBox');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastSub = document.getElementById('toastSub');
+    let toastTimeout = null;
+
+    function showToast(title, subtitle) {
+      clearTimeout(toastTimeout);
+      toastTitle.textContent = title;
+      toastSub.textContent = subtitle;
+      toastBox.classList.remove('translate-y-24', 'opacity-0');
+      toastTimeout = setTimeout(() => {
+        toastBox.classList.add('translate-y-24', 'opacity-0');
+      }, 3800);
+    }
+
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    copyEmailBtn.addEventListener('click', () => {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = 'asmaeeladra74@gmail.com';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      const t = translations[currentLang];
+      showToast(t.toastCopyTitle, t.toastCopySub);
+    });
+
+    // 11. Contact Form Submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameVal = document.getElementById('senderName').value.trim();
+      const emailVal = document.getElementById('senderEmail').value.trim();
+      const msgVal = document.getElementById('senderMessage').value.trim();
+
+      const nameErr = document.getElementById('nameErr');
+      const emailErr = document.getElementById('emailErr');
+      const msgErr = document.getElementById('msgErr');
+
+      let isValid = true;
+      if (!nameVal) { nameErr.classList.remove('hidden'); isValid = false; } else { nameErr.classList.add('hidden'); }
+      if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) { emailErr.classList.remove('hidden'); isValid = false; } else { emailErr.classList.add('hidden'); }
+      if (!msgVal) { msgErr.classList.remove('hidden'); isValid = false; } else { msgErr.classList.add('hidden'); }
+
+      if (isValid) {
+        contactForm.reset();
+        const t = translations[currentLang];
+        showToast(t.toastSendTitle, t.toastSendSub);
+      }
+    });
+
+    // Initialize saved or default language on load
+    applyLanguage(currentLang);
+  </script>
+</body>
+</html>
